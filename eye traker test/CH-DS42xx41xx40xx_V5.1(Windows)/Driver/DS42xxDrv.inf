@@ -1,0 +1,58 @@
+;-------------------------------------------------------
+; INF file for DS42xx Series Driver 
+; For Windows 2000/XP/2003/Vista(32-bit)
+; Copyright (C) Hikvision Digital Technology Co.,Ltd.
+
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=MEDIA
+ClassGUID={4d36e96c-e325-11ce-bfc1-08002be10318}
+Provider=%DS42XX%
+DriverVer=04/23/2009,1.2.0.0
+
+
+; ================= Device Install section =====================
+
+[Manufacturer]
+%Manufacturer%=DS42x
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[DS42x]
+%DS42XXHC.DeviceDesc% = DS42XXHC, PCI\VEN_3086&DEV_0101
+
+[DestinationDirs]
+DS42XXHC.CopyList  =  10,system32\drivers      ; WinXX\system32\drivers
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;         ds42xxhc 		   ;;;;;;;;;;;;;;;;;;;
+
+[DS42XXHC]
+CopyFiles=DS42XXHC.CopyList
+
+[DS42XXHC.Services]
+AddService = DS42XXHC,0x00000002,DS42XXHC.AddReg
+
+[DS42XXHC.AddReg]
+ServiceType   = 1	; KERNEL MODE DRIVER
+StartType     = 3	; MANUAL
+ErrorControl  = 1	; NORMAL
+ServiceBinary = %12%\DS42xxDrv.sys
+
+[DS42XXHC.CopyList]
+DS42xxDrv.sys
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[Strings]
+DS42XX=     "Hangzhou Hikvision Digital Techinology Co.,Ltd."
+Manufacturer="Hangzhou Hikvision Digital Techinology Co.,Ltd."
+DS42XXHC.DeviceDesc="Hikvision DS42xx Series"
+
+
+

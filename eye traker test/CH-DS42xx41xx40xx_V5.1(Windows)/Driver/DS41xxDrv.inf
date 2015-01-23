@@ -1,0 +1,57 @@
+;-------------------------------------------------------
+; INF file for DS41xxHC Series Driver 
+; For Windows 2000/XP/2003/Vista(32-bit)
+; Copyright (C) Hikvision Digital Technology Co.,Ltd.
+
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=MEDIA
+ClassGUID={4d36e96c-e325-11ce-bfc1-08002be10318}
+Provider=%DS41XX%
+DriverVer=09/18/2008,2.2.1.1
+
+
+; ================= Device Install section =====================
+
+[Manufacturer]
+%Manufacturer%=DS41x
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[DS41x]
+%DS41XXHC.DeviceDesc% = DS41XXHC, PCI\VEN_104c&DEV_B003
+
+[DestinationDirs]
+DS41XXHC.CopyList  =  10,system32\drivers      ; WinXX\system32\drivers
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;         ds41xxhc 		   ;;;;;;;;;;;;;;;;;;;
+
+[DS41XXHC]
+CopyFiles=DS41XXHC.CopyList
+
+[DS41XXHC.Services]
+AddService = DS41XXHC,0x00000002,DS41XXHC.AddReg
+
+[DS41XXHC.AddReg]
+ServiceType   = 1	; KERNEL MODE DRIVER
+StartType     = 3	; MANUAL
+ErrorControl  = 1	; NORMAL
+ServiceBinary = %12%\DS41xxDrv.sys
+
+[DS41XXHC.CopyList]
+DS41xxDrv.sys
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[Strings]
+DS41XX=     "Hangzhou Hikvision Digital Techinology Co.,Ltd."
+Manufacturer="Hangzhou Hikvision Digital Techinology Co.,Ltd."
+DS41XXHC.DeviceDesc="Hikvision DS41xxHC Series"
+DISKID="DS41xx serial card Installation Disk"
+
+
+
